@@ -1,0 +1,11 @@
+/* SPA fallback for Netlify */
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+/* Allow remoteEntry.js to be loaded cross-origin */
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
