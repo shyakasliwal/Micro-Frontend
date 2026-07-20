@@ -2,9 +2,9 @@ import { http, HttpResponse } from 'msw';
 import { addLocalSong, deleteLocalSong, getLocalSongs } from './store';
 
 export const handlers = [
-  http.get('/api/songs', () => HttpResponse.json(getLocalSongs())),
+  http.get('/songs', () => HttpResponse.json(getLocalSongs())),
 
-  http.post('/api/songs', async ({ request }) => {
+  http.post('/songs', async ({ request }) => {
     const body = await request.json();
 
     if (!body.title?.trim() || !body.artist?.trim() || !body.album?.trim()) {
@@ -22,7 +22,7 @@ export const handlers = [
     return HttpResponse.json(song, { status: 201 });
   }),
 
-  http.delete('/api/songs/:id', ({ params }) => {
+  http.delete('/songs/:id', ({ params }) => {
     const id = String(params.id);
     const deleted = deleteLocalSong(id);
 

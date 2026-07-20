@@ -3,16 +3,23 @@ import { handlers } from './handlers';
 
 export const worker = setupWorker(...handlers);
 
+let startPromise;
+
 export async function startMockServer() {
-  if (import.meta.env.PROD) {
-    await worker.start({
-      onUnhandledRequest: 'bypass',
-      serviceWorker: {
+  if (!startPromise) {
+    const options = { onUnhandledRequest: 'bypass' };
+
+    if (import.meta.env.PROD) {
+      options.serviceWorker = {
         url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
-      },
+      };
+    }
+
+    startPromise = worker.start(options).catch((error) => {
+      startPromise = undefined;
+      throw error;
     });
-    return;
   }
 
-  await worker.start({ onUnhandledRequest: 'bypass' });
+  return startPromise;
 }

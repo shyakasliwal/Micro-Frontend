@@ -30,7 +30,7 @@ export async function fetchItunesSongs() {
 
 export async function fetchLocalSongs() {
   try {
-    const { data } = await apiClient.get('/api/songs');
+    const { data } = await apiClient.get('/songs');
     return data;
   } catch (error) {
     throw new Error(getErrorMessage(error, 'Local songs API request failed'));
@@ -59,7 +59,7 @@ export async function fetchAllSongs() {
 
 export async function createSong(input) {
   try {
-    const { data } = await apiClient.post('/api/songs', input);
+    const { data } = await apiClient.post('/songs', input);
     return data;
   } catch (error) {
     throw new Error(getErrorMessage(error, 'Failed to add song'));
@@ -68,7 +68,7 @@ export async function createSong(input) {
 
 export async function deleteSong(id) {
   try {
-    await apiClient.delete(`/api/songs/${id}`);
+    await apiClient.delete(`/songs/${id}`);
   } catch (error) {
     throw new Error(getErrorMessage(error, 'Failed to delete song'));
   }
