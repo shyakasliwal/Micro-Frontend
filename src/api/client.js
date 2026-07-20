@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const itunesClient = axios.create({
-  baseURL: 'https://itunes.apple.com',
+  baseURL: '/itunes-api',
   timeout: 15000,
 });
 
