@@ -31,7 +31,7 @@ function ensureMockServer() {
 function MusicLibraryContent({ role }) {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [mocksReady, setMocksReady] = useState(false);
-  const songsQuery = useSongsQuery();
+  const songsQuery = useSongsQuery({ enabled: mocksReady });
 
   useEffect(() => {
     ensureMockServer().then(() => setMocksReady(true));
