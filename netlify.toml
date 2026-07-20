@@ -1,17 +1,17 @@
-/* Proxy iTunes API to avoid CORS */
+# Proxy iTunes API to avoid CORS
 [[redirects]]
   from = "/itunes-api/*"
   to = "https://itunes.apple.com/:splat"
   status = 200
   force = true
 
-/* SPA fallback for Netlify */
+# SPA fallback for Netlify
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-/* Allow remoteEntry.js to be loaded cross-origin */
+# Allow remoteEntry.js to be loaded cross-origin
 [[headers]]
   for = "/assets/*"
   [headers.values]
